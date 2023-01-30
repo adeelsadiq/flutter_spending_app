@@ -29,20 +29,25 @@ class MyHomePage extends StatelessWidget {
           ],
         ),
       ),
-      body: Column(children: <Widget>[
-        Column(
-          children: [
-            Container(
-              width: double.infinity,
-              child: Card(
-                elevation: 5,
-                child: Text('Chart!'),
-              ),
+      body: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          children: <Widget>[
+            Column(
+              children: [
+                Container(
+                  width: double.infinity,
+                  height: 45,
+                  child: Card(
+                    elevation: 5,
+                    color: Colors.orange,
+                    child: Text('Chart!'),
+                  ),
+                ),
+              ],
             ),
-          ],
-        ),
-        Card(child: Text('list of text!'))
-      ]),
+            Card(color: Colors.red, child: Text('list of text!'))
+          ]),
     );
   }
 }
