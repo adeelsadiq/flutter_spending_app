@@ -2,11 +2,11 @@
 
 import 'package:flutter/material.dart';
 
+import './widgets/transaction_list.dart';
+
 void main() => runApp(MyApp());
 
 class MyApp extends StatelessWidget {
-  const MyApp({super.key});
-
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -17,37 +17,58 @@ class MyApp extends StatelessWidget {
 }
 
 class MyHomePage extends StatelessWidget {
-  const MyHomePage({super.key});
+  // String titleInput;
+  // String amountInput;
+  final titleController = TextEditingController();
+  final amountController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Column(
-          children: [
-            Text('Flutter App'),
-          ],
+        appBar: AppBar(
+          title: Column(
+            children: [
+              Text('Flutter App'),
+            ],
+          ),
         ),
-      ),
-      body: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          crossAxisAlignment: CrossAxisAlignment.stretch,
-          children: <Widget>[
-            Column(
-              children: [
-                Container(
-                  width: double.infinity,
-                  height: 45,
-                  child: Card(
-                    elevation: 5,
-                    color: Colors.orange,
-                    child: Text('Chart!'),
+        body: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            children: <Widget>[
+              Column(
+                children: [
+                  Container(
+                    width: double.infinity,
+                    height: 45,
+                    child: Card(
+                      elevation: 5,
+                      color: Colors.orange,
+                      child: Text('Chart!'),
+                    ),
                   ),
-                ),
-              ],
-            ),
-            Card(color: Colors.red, child: Text('list of text!'))
-          ]),
-    );
+                  Card(
+                      child: Container(
+                    padding: EdgeInsets.all(10),
+                    child: Column(
+                      children: <Widget>[
+                        TextField(
+                            controller: titleController,
+                            decoration: InputDecoration(labelText: 'Title')),
+                        TextField(
+                            controller: amountController,
+                            decoration: InputDecoration(labelText: 'Amount')),
+                        ElevatedButton(
+                            onPressed: () {
+                              print(titleController.text);
+                              print(amountController.text);
+                            },
+                            child: Text('Add Transactions'))
+                      ],
+                    ),
+                  ))
+                ],
+              ),
+            ]));
   }
 }
