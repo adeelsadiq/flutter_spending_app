@@ -1,40 +1,17 @@
 import 'package:flutter/material.dart';
-import '../models/transaction.dart';
 import 'package:intl/intl.dart';
 
-class TransactionList extends StatefulWidget {
-  const TransactionList({Key key}) : super(key: key);
+import '../models/transaction.dart';
 
-  @override
-  State<TransactionList> createState() => _TransactionListState();
-}
+class TransactionList extends StatelessWidget {
+  final List<Transaction> transactions;
 
-class _TransactionListState extends State<TransactionList> {
-  final List<Transaction> _userTransactions = [
-    Transaction(
-      id: 't1',
-      title: 'New Shoes',
-      amount: 69.99,
-      date: DateTime.now(),
-    ),
-    Transaction(
-      id: 't2',
-      title: 'Shopping',
-      amount: 19.99,
-      date: DateTime.now(),
-    ),
-    Transaction(
-      id: 't2',
-      title: 'New Shirt',
-      amount: 29.99,
-      date: DateTime.now(),
-    )
-  ];
+  TransactionList(this.transactions);
+
   @override
   Widget build(BuildContext context) {
-    return Container(
-        child: Column(
-      children: _userTransactions.map((tx) {
+    return Column(
+      children: transactions.map((tx) {
         return Card(
           child: Row(
             children: <Widget>[
@@ -45,16 +22,18 @@ class _TransactionListState extends State<TransactionList> {
                 ),
                 decoration: BoxDecoration(
                   border: Border.all(
-                    color: Colors.black,
+                    color: Colors.purple,
                     width: 2,
                   ),
                 ),
+                padding: EdgeInsets.all(10),
                 child: Text(
                   '\$${tx.amount}',
                   style: TextStyle(
-                      color: Colors.teal,
-                      fontWeight: FontWeight.bold,
-                      fontSize: 20),
+                    fontWeight: FontWeight.bold,
+                    fontSize: 20,
+                    color: Colors.purple,
+                  ),
                 ),
               ),
               Column(
@@ -63,24 +42,22 @@ class _TransactionListState extends State<TransactionList> {
                   Text(
                     tx.title,
                     style: TextStyle(
-                        color: Colors.black,
-                        fontWeight: FontWeight.bold,
-                        fontSize: 18),
+                      fontSize: 16,
+                      fontWeight: FontWeight.bold,
+                    ),
                   ),
                   Text(
-                    DateFormat('yyyy-MM-dd hh:mm:ss').format(tx.date),
+                    DateFormat.yMMMd().format(tx.date),
                     style: TextStyle(
-                        color: Colors.grey,
-                        fontWeight: FontWeight.normal,
-                        fontSize: 16),
+                      color: Colors.grey,
+                    ),
                   ),
                 ],
-              )
+              ),
             ],
           ),
-          // child: Text(tx.title),
         );
       }).toList(),
-    ));
+    );
   }
 }
